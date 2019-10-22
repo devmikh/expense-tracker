@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://devmikh:devmikh1@expensetracker-ysjto.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://devmikh:devmikh1@expensetracker-ysjto.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
 }
