@@ -1,9 +1,13 @@
 import React from "react";
+import Expenses from "../expenses/Expenses";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className='grid-2'>
+      <div>{/* expense form */}</div>
+      <div>
+        <Expenses />
+      </div>
     </div>
   );
 };
