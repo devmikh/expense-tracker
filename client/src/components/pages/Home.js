@@ -3,7 +3,7 @@ import Expenses from "../expenses/Expenses";
 
 const Home = () => {
   return (
-    <div className='grid-2'>
+    <div>
       <div>{/* expense form */}</div>
       <div>
         <Expenses />

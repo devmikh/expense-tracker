@@ -8,10 +8,25 @@ const Expenses = () => {
   const { expenses } = expenseContext;
 
   return (
+    // <Fragment>
+    //   {expenses.map(expense => (
+    //     <ExpenseItem key={expense.id} expense={expense} />
+    //   ))}
+    // </Fragment>
     <Fragment>
-      {expenses.map(expense => (
-        <ExpenseItem key={expense.id} expense={expense} />
-      ))}
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Category</th>
+          <th className='hide-sm'>Description</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        {expenses.map(expense => (
+          <ExpenseItem key={expense.id} expense={expense} />
+        ))}
+      </table>
     </Fragment>
   );
 };
