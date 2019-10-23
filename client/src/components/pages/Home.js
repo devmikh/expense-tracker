@@ -4,10 +4,11 @@ import ExpenseForm from "../expenses/ExpenseForm";
 
 const Home = () => {
   return (
-    <div>
-      <div>{/* expense form */}</div>
+    <div className='grid-custom'>
       <div>
         <ExpenseForm />
+      </div>
+      <div>
         <Expenses />
       </div>
     </div>

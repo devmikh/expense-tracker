@@ -13,6 +13,7 @@ const ExpenseForm = () => {
     <form>
       <h2 className='text-primary'>Add Expense</h2>
       <input type='date' name='date' value={date} />
+      <input type='number' name='amount' placeholder='Amount' value={amount} />
       <input
         type='text'
         placeholder='Description'
