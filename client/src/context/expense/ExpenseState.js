@@ -36,20 +36,37 @@ const ExpenseState = props => {
         description: "jkspakjwgjprewgokl",
         category: "Other"
       }
-    ]
+    ],
+    current: null
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
 
   // Add Expense
+  const addExpense = expense => {
+    expense.id = uuid.v4();
+    dispatch({ type: ADD_EXPENSE, payload: expense });
+  };
 
   // Delete Expense
+  const deleteExpense = id => {
+    dispatch({ type: DELETE_EXPENSE, payload: id });
+  };
 
   // Set Current Expense
+  const setCurrent = expense => {
+    dispatch({ type: SET_CURRENT, payload: expense });
+  };
 
   // Clear Current Expense
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT });
+  };
 
   // Update Expense
+  const updateExpense = expense => {
+    dispatch({ type: UPDATE_EXPENSE, payload: expense });
+  };
 
   // Filter Expenses
 
@@ -58,7 +75,13 @@ const ExpenseState = props => {
   return (
     <ExpenseContext.Provider
       value={{
-        expenses: state.expenses
+        expenses: state.expenses,
+        current: state.current,
+        addExpense,
+        deleteExpense,
+        setCurrent,
+        clearCurrent,
+        updateExpense
       }}
     >
       {props.children}
