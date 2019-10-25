@@ -39,6 +39,21 @@ export default (state, action) => {
         ...state,
         current: null
       };
+    case FILTER_EXPENSES:
+      return {
+        ...state,
+        filtered: state.expenses.filter(expense => {
+          const regex = new RegExp(`${action.payload}`, "gi");
+          return (
+            expense.category.match(regex) || expense.description.match(regex)
+          );
+        })
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: null
+      };
     default:
       return state;
   }

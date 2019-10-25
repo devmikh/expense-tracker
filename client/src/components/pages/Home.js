@@ -1,6 +1,7 @@
 import React from "react";
 import Expenses from "../expenses/Expenses";
 import ExpenseForm from "../expenses/ExpenseForm";
+import ExpenseFilter from "../expenses/ExpenseFilter";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <ExpenseForm />
       </div>
       <div>
+        <ExpenseFilter />
         <Expenses />
       </div>
     </div>

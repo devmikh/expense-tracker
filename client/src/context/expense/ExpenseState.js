@@ -37,7 +37,8 @@ const ExpenseState = props => {
         category: "Other"
       }
     ],
-    current: null
+    current: null,
+    filtered: null
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
@@ -69,19 +70,28 @@ const ExpenseState = props => {
   };
 
   // Filter Expenses
+  const filterExpenses = text => {
+    dispatch({ type: FILTER_EXPENSES, payload: text });
+  };
 
   // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
 
   return (
     <ExpenseContext.Provider
       value={{
         expenses: state.expenses,
         current: state.current,
+        filtered: state.filtered,
         addExpense,
         deleteExpense,
         setCurrent,
         clearCurrent,
-        updateExpense
+        updateExpense,
+        filterExpenses,
+        clearFilter
       }}
     >
       {props.children}

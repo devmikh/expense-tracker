@@ -14,17 +14,21 @@ const ExpenseItem = ({ expense }) => {
   };
 
   const newDate = new Date(date);
+  const year = newDate.getUTCFullYear();
+  const month = newDate.getUTCMonth() + 1;
+  const day = newDate.getUTCDate();
+  const formattedDate = month + "/" + day + "/" + year;
 
   return (
     // <div className='card bg-light'>
     //   <h3 className='text-primary text-left'>{description}</h3>
     // </div>
     <tr>
-      <td>{newDate.toString()}</td>
+      <td>{formattedDate}</td>
       <td>{amount}</td>
       <td>{category}</td>
       <td className='hide-sm'>{description}</td>
-      <td>
+      <td style={{ textAlign: "center" }}>
         <button
           className='btn btn-dark btn-sm'
           onClick={() => setCurrent(expense)}
@@ -32,7 +36,7 @@ const ExpenseItem = ({ expense }) => {
           Edit
         </button>
       </td>
-      <td>
+      <td style={{ textAlign: "center" }}>
         <button className='btn btn-danger btn-sm' onClick={onDelete}>
           Delete
         </button>
