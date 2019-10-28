@@ -7,3 +7,6 @@ export const FILTER_EXPENSES = "FILTER_EXPENSES";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
+export const SORT_EXPENSES = "SORT_EXPENSES";
+export const SET_ORDER = "SET_ORDER";
+export const SET_SORT = "SET_SORT";

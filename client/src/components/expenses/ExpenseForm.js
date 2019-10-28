@@ -17,7 +17,13 @@ const ExpenseForm = () => {
 
   const expenseContext = useContext(ExpenseContext);
 
-  const { addExpense, updateExpense, clearCurrent, current } = expenseContext;
+  const {
+    addExpense,
+    updateExpense,
+    clearCurrent,
+    sortExpenses,
+    current
+  } = expenseContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -48,8 +54,10 @@ const ExpenseForm = () => {
     e.preventDefault();
     if (current === null) {
       addExpense(expense);
+      sortExpenses();
     } else {
       updateExpense(expense);
+      sortExpenses();
     }
     clearAll();
   };

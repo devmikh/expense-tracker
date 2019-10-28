@@ -9,7 +9,10 @@ import {
   CLEAR_CURRENT,
   UPDATE_EXPENSE,
   FILTER_EXPENSES,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  SORT_EXPENSES,
+  SET_ORDER,
+  SET_SORT
 } from "../types";
 
 const ExpenseState = props => {
@@ -38,7 +41,9 @@ const ExpenseState = props => {
       }
     ],
     current: null,
-    filtered: null
+    filtered: null,
+    order: "asc",
+    sortBy: "Date"
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
@@ -79,19 +84,39 @@ const ExpenseState = props => {
     dispatch({ type: CLEAR_FILTER });
   };
 
+  // Sort Expenses
+  const sortExpenses = () => {
+    dispatch({ type: SORT_EXPENSES });
+  };
+
+  // Set Order
+  const setOrder = order => {
+    dispatch({ type: SET_ORDER, payload: order });
+  };
+
+  // Set Sort
+  const setSort = sortBy => {
+    dispatch({ type: SET_SORT, payload: sortBy });
+  };
+
   return (
     <ExpenseContext.Provider
       value={{
         expenses: state.expenses,
         current: state.current,
         filtered: state.filtered,
+        order: state.order,
+        sortBy: state.sortBy,
         addExpense,
         deleteExpense,
         setCurrent,
         clearCurrent,
         updateExpense,
         filterExpenses,
-        clearFilter
+        clearFilter,
+        sortExpenses,
+        setOrder,
+        setSort
       }}
     >
       {props.children}
