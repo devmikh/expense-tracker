@@ -11,6 +11,10 @@ const Expenses = () => {
     return <h4>No expenses found</h4>;
   }
 
+  // useEffect(() => {
+  //   sortExpenses();
+  // });
+
   return (
     <Fragment>
       <table>

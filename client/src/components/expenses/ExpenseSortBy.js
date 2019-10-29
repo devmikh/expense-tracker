@@ -3,7 +3,7 @@ import ExpenseContext from "../../context/expense/expenseContext";
 
 const ExpenseSortBy = () => {
   const expenseContext = useContext(ExpenseContext);
-  const { setOrder, setSort, sortExpenses, order } = expenseContext;
+  const { setOrder, setSort, sortExpenses, order, sortBy } = expenseContext;
 
   const onChange = e => {
     if (e.target.name === "order") {
@@ -18,7 +18,7 @@ const ExpenseSortBy = () => {
   return (
     <div>
       <h4>Sort By</h4>
-      <select name='sort' onChange={onChange}>
+      <select name='sort' value={sortBy} onChange={onChange}>
         <option value='Date'>Date</option>
         <option value='Amount'>Amount</option>
         <option value='Category'>Category</option>
