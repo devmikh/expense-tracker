@@ -36,6 +36,7 @@ const ExpenseForm = () => {
         description: ""
       });
     }
+    // eslint-disable-next-line
   }, [expenseContext, current]);
 
   const [expense, setExpense] = useState({
