@@ -3,12 +3,14 @@ import axios from "axios";
 import ExpenseContext from "./expenseContext";
 import expenseReducer from "./expenseReducer";
 import {
+  GET_EXPENSES,
   ADD_EXPENSE,
   DELETE_EXPENSE,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_EXPENSE,
   FILTER_EXPENSES,
+  CLEAR_EXPENSES,
   CLEAR_FILTER,
   SORT_EXPENSES,
   SET_ORDER,
@@ -18,7 +20,7 @@ import {
 
 const ExpenseState = props => {
   const initialState = {
-    expenses: [],
+    expenses: null,
     current: null,
     filtered: null,
     order: "asc",
@@ -27,6 +29,23 @@ const ExpenseState = props => {
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
+
+  // Get Expenses
+  const getExpenses = async () => {
+    try {
+      const res = await axios.get("/api/expenses");
+
+      dispatch({
+        type: GET_EXPENSES,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: EXPENSE_ERROR,
+        payload: err.response.msg
+      });
+    }
+  };
 
   // Add Expense
   const addExpense = async expense => {
@@ -51,6 +70,11 @@ const ExpenseState = props => {
   // Delete Expense
   const deleteExpense = id => {
     dispatch({ type: DELETE_EXPENSE, payload: id });
+  };
+
+  // Clear Expenses
+  const clearExpenses = () => {
+    dispatch({ type: CLEAR_EXPENSES });
   };
 
   // Set Current Expense
@@ -111,7 +135,9 @@ const ExpenseState = props => {
         clearFilter,
         sortExpenses,
         setOrder,
-        setSort
+        setSort,
+        getExpenses,
+        clearExpenses
       }}
     >
       {props.children}

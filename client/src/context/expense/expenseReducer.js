@@ -1,4 +1,5 @@
 import {
+  GET_EXPENSES,
   ADD_EXPENSE,
   DELETE_EXPENSE,
   SET_CURRENT,
@@ -9,29 +10,47 @@ import {
   EXPENSE_ERROR,
   SORT_EXPENSES,
   SET_ORDER,
-  SET_SORT
+  SET_SORT,
+  CLEAR_EXPENSES
 } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_EXPENSES:
+      return {
+        ...state,
+        expenses: action.payload,
+        loading: false
+      };
     case ADD_EXPENSE:
       return {
         ...state,
-        expenses: [...state.expenses, action.payload]
+        expenses: [...state.expenses, action.payload],
+        loading: false
       };
     case UPDATE_EXPENSE:
       return {
         ...state,
         expenses: state.expenses.map(expense =>
           expense.id === action.payload.id ? action.payload : expense
-        )
+        ),
+        loading: false
       };
     case DELETE_EXPENSE:
       return {
         ...state,
         expenses: state.expenses.filter(
           expense => expense.id !== action.payload
-        )
+        ),
+        loading: false
+      };
+    case CLEAR_EXPENSES:
+      return {
+        ...state,
+        expenses: null,
+        filtered: null,
+        error: null,
+        current: null
       };
     case SET_CURRENT:
       return {
