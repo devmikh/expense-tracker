@@ -5,6 +5,7 @@ export const CLEAR_CURRENT = "CLEAR_CURRENT";
 export const UPDATE_EXPENSE = "UPDATE_EXPENSE";
 export const FILTER_EXPENSES = "FILTER_EXPENSES";
 export const CLEAR_FILTER = "CLEAR_FILTER";
+export const EXPENSE_ERROR = "EXPENSE_ERROR";
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const SORT_EXPENSES = "SORT_EXPENSES";

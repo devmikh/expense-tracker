@@ -37,10 +37,10 @@ const Expenses = () => {
         <tbody>
           {filtered !== null
             ? filtered.map(expense => (
-                <ExpenseItem key={expense.id} expense={expense} />
+                <ExpenseItem key={expense._id} expense={expense} />
               ))
             : expenses.map(expense => (
-                <ExpenseItem key={expense.id} expense={expense} />
+                <ExpenseItem key={expense._id} expense={expense} />
               ))}
         </tbody>
       </table>

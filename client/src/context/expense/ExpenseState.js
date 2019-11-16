@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import uuid from "uuid";
+import axios from "axios";
 import ExpenseContext from "./expenseContext";
 import expenseReducer from "./expenseReducer";
 import {
@@ -12,46 +12,40 @@ import {
   CLEAR_FILTER,
   SORT_EXPENSES,
   SET_ORDER,
-  SET_SORT
+  SET_SORT,
+  EXPENSE_ERROR
 } from "../types";
 
 const ExpenseState = props => {
   const initialState = {
-    expenses: [
-      {
-        id: 1,
-        date: 69771323,
-        amount: 1200,
-        description: "qulum alamo hskksf lakjjksdg",
-        category: "Food"
-      },
-      {
-        id: 2,
-        date: 6878989,
-        amount: 32.21,
-        description: "ejkrjhprjegjerg",
-        category: "Food"
-      },
-      {
-        id: 3,
-        date: 697713231,
-        amount: 234,
-        description: "jkspakjwgjprewgokl",
-        category: "Other"
-      }
-    ],
+    expenses: [],
     current: null,
     filtered: null,
     order: "asc",
-    sortBy: "Date"
+    sortBy: "Date",
+    error: null
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
 
   // Add Expense
-  const addExpense = expense => {
-    expense.id = uuid.v4();
-    dispatch({ type: ADD_EXPENSE, payload: expense });
+  const addExpense = async expense => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    try {
+      const res = await axios.post("/api/expenses", expense, config);
+
+      dispatch({
+        type: ADD_EXPENSE,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({ type: EXPENSE_ERROR, payload: err.response.msg });
+    }
   };
 
   // Delete Expense
@@ -107,6 +101,7 @@ const ExpenseState = props => {
         filtered: state.filtered,
         order: state.order,
         sortBy: state.sortBy,
+        error: state.error,
         addExpense,
         deleteExpense,
         setCurrent,

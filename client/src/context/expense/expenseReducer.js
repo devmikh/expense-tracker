@@ -6,6 +6,7 @@ import {
   UPDATE_EXPENSE,
   FILTER_EXPENSES,
   CLEAR_FILTER,
+  EXPENSE_ERROR,
   SORT_EXPENSES,
   SET_ORDER,
   SET_SORT
@@ -110,6 +111,11 @@ export default (state, action) => {
             }
           }
         )
+      };
+    case EXPENSE_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;
