@@ -93,10 +93,20 @@ const ExpenseForm = () => {
       <h4>Category</h4>
       <select name='category' value={category} onChange={onChange}>
         <option value='Other'>Other</option>
-        <option value='Food'>Food</option>
-        <option value='Entertainment'>Entertainment</option>
-        <option value='Clothes'>Clothes</option>
+        <option value='Automobile'>Automobile</option>
         <option value='Bills'>Bills</option>
+        <option value='Clothing'>Clothing</option>
+        <option value='Entertainment'>Entertainment</option>
+        <option value='Fitness'>Fitness</option>
+        <option value='Food'>Food</option>
+        <option value='Gift'>Gift</option>
+        <option value='Health'>Health</option>
+        <option value='Home'>Home</option>
+        <option value='Insurance'>Insurance</option>
+        <option value='Internet'>Internet</option>
+        <option value='Tax'>Tax</option>
+        <option value='Telephone'>Telephone</option>
+        <option value='Transportation/Transit'>Transportation/Transit</option>
       </select>
       <h4>Description</h4>
       <input
