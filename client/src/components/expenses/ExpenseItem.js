@@ -6,10 +6,10 @@ const ExpenseItem = ({ expense }) => {
   const expenseContext = useContext(ExpenseContext);
   const { deleteExpense, setCurrent, clearCurrent } = expenseContext;
 
-  const { id, date, amount, description, category } = expense;
+  const { _id, date, amount, description, category } = expense;
 
   const onDelete = () => {
-    deleteExpense(id);
+    deleteExpense(_id);
     clearCurrent();
   };
 

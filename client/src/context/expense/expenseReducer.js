@@ -32,7 +32,7 @@ export default (state, action) => {
       return {
         ...state,
         expenses: state.expenses.map(expense =>
-          expense.id === action.payload.id ? action.payload : expense
+          expense._id === action.payload._id ? action.payload : expense
         ),
         loading: false
       };
@@ -40,7 +40,7 @@ export default (state, action) => {
       return {
         ...state,
         expenses: state.expenses.filter(
-          expense => expense.id !== action.payload
+          expense => expense._id !== action.payload
         ),
         loading: false
       };

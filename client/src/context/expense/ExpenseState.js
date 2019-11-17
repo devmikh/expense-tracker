@@ -68,8 +68,44 @@ const ExpenseState = props => {
   };
 
   // Delete Expense
-  const deleteExpense = id => {
-    dispatch({ type: DELETE_EXPENSE, payload: id });
+  const deleteExpense = async id => {
+    try {
+      const res = await axios.delete(`/api/expenses/${id}`);
+
+      dispatch({
+        type: DELETE_EXPENSE,
+        payload: id
+      });
+    } catch (err) {
+      dispatch({ type: EXPENSE_ERROR, payload: err.response.msg });
+    }
+  };
+
+  // Update Expense
+  const updateExpense = async expense => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    try {
+      const res = await axios.put(
+        `/api/expenses/${expense._id}`,
+        expense,
+        config
+      );
+
+      dispatch({
+        type: UPDATE_EXPENSE,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: EXPENSE_ERROR,
+        payload: err.response.msg
+      });
+    }
   };
 
   // Clear Expenses
@@ -85,11 +121,6 @@ const ExpenseState = props => {
   // Clear Current Expense
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
-  };
-
-  // Update Expense
-  const updateExpense = expense => {
-    dispatch({ type: UPDATE_EXPENSE, payload: expense });
   };
 
   // Filter Expenses
