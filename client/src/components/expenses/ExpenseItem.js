@@ -19,13 +19,15 @@ const ExpenseItem = ({ expense }) => {
   const day = newDate.getUTCDate();
   const formattedDate = month + "/" + day + "/" + year;
 
+  const formattedAmount = "$" + amount.toFixed(2);
+
   return (
     // <div className='card bg-light'>
     //   <h3 className='text-primary text-left'>{description}</h3>
     // </div>
     <tr>
       <td>{formattedDate}</td>
-      <td>{amount}</td>
+      <td>{formattedAmount}</td>
       <td>{category}</td>
       <td className='hide-sm'>{description}</td>
       <td style={{ textAlign: "center" }}>

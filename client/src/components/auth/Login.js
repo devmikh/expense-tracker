@@ -61,7 +61,11 @@ const Login = props => {
             onChange={onChange}
           />
         </div>
-        <input type='submit' value='Login' class='btn btn-primary btn-block' />
+        <input
+          type='submit'
+          value='Login'
+          className='btn btn-primary btn-block'
+        />
       </form>
     </div>
   );

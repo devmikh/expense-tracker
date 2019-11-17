@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import ExpenseContext from "../../context/expense/expenseContext";
+import AlertContext from "../../context/alert/alertContext";
 
 const ExpenseForm = () => {
   let today = new Date();
@@ -16,6 +17,9 @@ const ExpenseForm = () => {
   today = yyyy + "-" + mm + "-" + dd;
 
   const expenseContext = useContext(ExpenseContext);
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert } = alertContext;
 
   const {
     addExpense,
@@ -31,7 +35,7 @@ const ExpenseForm = () => {
     } else {
       setExpense({
         date: today,
-        amount: 0,
+        amount: "",
         category: "Other",
         description: ""
       });
@@ -71,14 +75,20 @@ const ExpenseForm = () => {
     <form onSubmit={onSubmit}>
       <h2 className='text-primary'>{current ? "Edit Entry" : "Add Entry"}</h2>
       <h4>Date</h4>
-      <input type='date' name='date' value={date} onChange={onChange} />
+      <input
+        type='date'
+        name='date'
+        value={date.toString().slice(0, 10)}
+        onChange={onChange}
+      />
       <h4>Amount</h4>
       <input
         type='number'
         name='amount'
-        placeholder='Amount'
+        placeholder='$1,000'
         value={amount}
         onChange={onChange}
+        required
       />
       <h4>Category</h4>
       <select name='category' value={category} onChange={onChange}>
@@ -91,7 +101,7 @@ const ExpenseForm = () => {
       <h4>Description</h4>
       <input
         type='text'
-        placeholder='Description'
+        placeholder='(optional)'
         name='description'
         value={description}
         onChange={onChange}

@@ -6,10 +6,17 @@ import ExpenseContext from "../../context/expense/expenseContext";
 const Expenses = () => {
   const expenseContext = useContext(ExpenseContext);
 
-  const { expenses, filtered, getExpenses, loading } = expenseContext;
+  const {
+    expenses,
+    filtered,
+    getExpenses,
+    sortExpenses,
+    loading
+  } = expenseContext;
 
-  useEffect(() => {
-    getExpenses();
+  useEffect(async () => {
+    await getExpenses();
+    sortExpenses();
     // eslint-disable-next-line
   }, []);
 
@@ -25,12 +32,15 @@ const Expenses = () => {
     <Fragment>
       {expenses !== null && !loading ? (
         <table>
-          <col style={{ width: "15%" }} />
-          <col style={{ width: "15%" }} />
-          <col style={{ width: "20%" }} />
-          <col style={{ width: "30%" }} />
-          <col style={{ width: "10%" }} />
-          <col style={{ width: "10%" }} />
+          <colgroup>
+            <col style={{ width: "15%" }} />
+            <col style={{ width: "15%" }} />
+            <col style={{ width: "20%" }} />
+            <col style={{ width: "30%" }} />
+            <col style={{ width: "10%" }} />
+            <col style={{ width: "10%" }} />
+          </colgroup>
+
           <thead>
             <tr>
               <th>Date</th>
