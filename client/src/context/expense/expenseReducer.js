@@ -11,8 +11,7 @@ import {
   SORT_EXPENSES,
   SET_ORDER,
   SET_SORT,
-  CLEAR_EXPENSES,
-  UPDATE_CHART_DATA
+  CLEAR_EXPENSES
 } from "../types";
 
 export default (state, action) => {
@@ -91,68 +90,39 @@ export default (state, action) => {
     case SORT_EXPENSES:
       return {
         ...state,
-        expenses: state.expenses.sort(
-          // (a, b) => (a.amount > b.amount ? 1 : -1)
-          // {
-          // switch (action.payload) {
-          //   case "Date":
-          //     a.date > b.date ? 1 : -1;
-          //   case "Amount":
-          //     a.date > b.amount ? 1 : -1;
-          //   case "Category":
-          //     a.date > b.category ? 1 : -1;
-          // }
-          // }
-          (a, b) => {
-            switch (state.sortBy) {
-              case "Date":
-                if (state.order === "asc") {
-                  return new Date(a.date) - new Date(b.date);
-                } else {
-                  return new Date(b.date) - new Date(a.date);
-                }
+        expenses: state.expenses.sort((a, b) => {
+          switch (state.sortBy) {
+            case "Date":
+              if (state.order === "asc") {
+                return new Date(a.date) - new Date(b.date);
+              } else {
+                return new Date(b.date) - new Date(a.date);
+              }
 
-              case "Amount":
-                if (state.order === "asc") {
-                  return a.amount - b.amount;
-                } else {
-                  return b.amount - a.amount;
-                }
+            case "Amount":
+              if (state.order === "asc") {
+                return a.amount - b.amount;
+              } else {
+                return b.amount - a.amount;
+              }
 
-              case "Category":
-                if (state.order === "asc") {
-                  return a.category > b.category ? 1 : -1;
-                } else {
-                  return a.category > b.category ? -1 : 1;
-                }
+            case "Category":
+              if (state.order === "asc") {
+                return a.category > b.category ? 1 : -1;
+              } else {
+                return a.category > b.category ? -1 : 1;
+              }
 
-              default:
-                return state;
-            }
+            default:
+              return state;
           }
-        )
+        })
       };
     case EXPENSE_ERROR:
       return {
         ...state,
         error: action.payload
       };
-    // case UPDATE_CHART_DATA:
-    //   return {
-    //     ...state,
-    //     chartDataLabels: [
-    //       ...new Set(state.expenses.map(expense => expense.category))
-    //     ],
-    //     chartData: state.chartDataLabels.map(cat => {
-    //       state.expenses.map(expense => {
-    //         let sum = 0;
-    //         if (expense.category === cat) {
-    //           sum += expense.amount;
-    //         }
-    //         return sum;
-    //       });
-    //     })
-    //   };
     default:
       return state;
   }

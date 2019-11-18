@@ -14,19 +14,17 @@ const Expenses = () => {
     loading
   } = expenseContext;
 
-  useEffect(async () => {
-    await getExpenses();
-    sortExpenses();
+  useEffect(() => {
+    (async function() {
+      await getExpenses();
+      sortExpenses();
+    })();
     // eslint-disable-next-line
   }, []);
 
   if (expenses !== null && expenses.length === 0 && !loading) {
     return <h4>No expenses found</h4>;
   }
-
-  // useEffect(() => {
-  //   sortExpenses();
-  // });
 
   return (
     <Fragment>
@@ -36,9 +34,9 @@ const Expenses = () => {
             <col style={{ width: "15%" }} />
             <col style={{ width: "15%" }} />
             <col style={{ width: "20%" }} />
-            <col style={{ width: "30%" }} />
-            <col style={{ width: "10%" }} />
-            <col style={{ width: "10%" }} />
+            <col style={{ width: "25%" }} className='hide-sm' />
+            <col style={{ width: "11%" }} />
+            <col style={{ width: "14%" }} />
           </colgroup>
 
           <thead>

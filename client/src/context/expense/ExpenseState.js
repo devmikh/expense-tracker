@@ -15,8 +15,7 @@ import {
   SORT_EXPENSES,
   SET_ORDER,
   SET_SORT,
-  EXPENSE_ERROR,
-  UPDATE_CHART_DATA
+  EXPENSE_ERROR
 } from "../types";
 
 const ExpenseState = props => {
@@ -27,8 +26,6 @@ const ExpenseState = props => {
     order: "asc",
     sortBy: "Date",
     error: null
-    // chartData: [1, 2, 3],
-    // chartDataLabels: []
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
@@ -49,20 +46,6 @@ const ExpenseState = props => {
       });
     }
   };
-
-  // Update Chart Data
-  // const updateChartData = () => {
-  //   try {
-  //     dispatch({
-  //       type: UPDATE_CHART_DATA
-  //     });
-  //   } catch (err) {
-  //     dispatch({
-  //       type: EXPENSE_ERROR,
-  //       payload: err.response.msg
-  //     });
-  //   }
-  // };
 
   // Add Expense
   const addExpense = async expense => {
@@ -88,7 +71,7 @@ const ExpenseState = props => {
   // Delete Expense
   const deleteExpense = async id => {
     try {
-      const res = await axios.delete(`/api/expenses/${id}`);
+      await axios.delete(`/api/expenses/${id}`);
 
       dispatch({
         type: DELETE_EXPENSE,
@@ -189,7 +172,6 @@ const ExpenseState = props => {
         setSort,
         getExpenses,
         clearExpenses
-        //updateChartData
       }}
     >
       {props.children}

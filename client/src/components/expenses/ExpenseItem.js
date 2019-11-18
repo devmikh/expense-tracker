@@ -25,7 +25,7 @@ const ExpenseItem = ({ expense }) => {
     switch (category) {
       case "Automobile":
         return <i className='fas fa-car' />;
-      case "Bills":
+      case "Bills/Utilities":
         return <i className='fas fa-money-check-alt' />;
       case "Clothing":
         return <i className='fas fa-tshirt' />;
@@ -47,15 +47,14 @@ const ExpenseItem = ({ expense }) => {
         return <i className='fas fa-mobile-alt' />;
       case "Transportation/Transit":
         return <i className='fas fa-bus' />;
+      case "Travel":
+        return <i className='fas fa-plane' />;
       default:
         return null;
     }
   };
 
   return (
-    // <div className='card bg-light'>
-    //   <h3 className='text-primary text-left'>{description}</h3>
-    // </div>
     <tr>
       <td>{formattedDate}</td>
       <td>{formattedAmount}</td>

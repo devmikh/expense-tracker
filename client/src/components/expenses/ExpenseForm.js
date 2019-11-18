@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import ExpenseContext from "../../context/expense/expenseContext";
-import AlertContext from "../../context/alert/alertContext";
 
 const ExpenseForm = () => {
   let today = new Date();
@@ -17,9 +16,6 @@ const ExpenseForm = () => {
   today = yyyy + "-" + mm + "-" + dd;
 
   const expenseContext = useContext(ExpenseContext);
-  const alertContext = useContext(AlertContext);
-
-  const { setAlert } = alertContext;
 
   const {
     addExpense,
@@ -94,7 +90,7 @@ const ExpenseForm = () => {
       <select name='category' value={category} onChange={onChange}>
         <option value='Other'>Other</option>
         <option value='Automobile'>Automobile</option>
-        <option value='Bills'>Bills</option>
+        <option value='Bills/Utilities'>Bills/Utilities</option>
         <option value='Clothing'>Clothing</option>
         <option value='Entertainment'>Entertainment</option>
         <option value='Fitness'>Fitness</option>
@@ -105,6 +101,7 @@ const ExpenseForm = () => {
         <option value='Internet'>Internet</option>
         <option value='Telephone'>Telephone</option>
         <option value='Transportation/Transit'>Transportation/Transit</option>
+        <option value='Travel'>Travel</option>
       </select>
       <h4>Description</h4>
       <input
