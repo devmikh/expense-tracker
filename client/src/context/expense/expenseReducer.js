@@ -11,7 +11,8 @@ import {
   SORT_EXPENSES,
   SET_ORDER,
   SET_SORT,
-  CLEAR_EXPENSES
+  CLEAR_EXPENSES,
+  UPDATE_CHART_DATA
 } from "../types";
 
 export default (state, action) => {
@@ -136,6 +137,22 @@ export default (state, action) => {
         ...state,
         error: action.payload
       };
+    // case UPDATE_CHART_DATA:
+    //   return {
+    //     ...state,
+    //     chartDataLabels: [
+    //       ...new Set(state.expenses.map(expense => expense.category))
+    //     ],
+    //     chartData: state.chartDataLabels.map(cat => {
+    //       state.expenses.map(expense => {
+    //         let sum = 0;
+    //         if (expense.category === cat) {
+    //           sum += expense.amount;
+    //         }
+    //         return sum;
+    //       });
+    //     })
+    //   };
     default:
       return state;
   }

@@ -55,13 +55,13 @@ const ExpenseForm = () => {
   const onChange = e =>
     setExpense({ ...expense, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (current === null) {
-      addExpense(expense);
+      await addExpense(expense);
       sortExpenses();
     } else {
-      updateExpense(expense);
+      await updateExpense(expense);
       sortExpenses();
     }
     clearAll();
@@ -102,9 +102,7 @@ const ExpenseForm = () => {
         <option value='Gift'>Gift</option>
         <option value='Health'>Health</option>
         <option value='Home'>Home</option>
-        <option value='Insurance'>Insurance</option>
         <option value='Internet'>Internet</option>
-        <option value='Tax'>Tax</option>
         <option value='Telephone'>Telephone</option>
         <option value='Transportation/Transit'>Transportation/Transit</option>
       </select>

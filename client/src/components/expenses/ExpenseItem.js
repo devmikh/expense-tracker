@@ -21,6 +21,37 @@ const ExpenseItem = ({ expense }) => {
 
   const formattedAmount = "$" + amount.toFixed(2);
 
+  const displayLogo = category => {
+    switch (category) {
+      case "Automobile":
+        return <i className='fas fa-car' />;
+      case "Bills":
+        return <i className='fas fa-money-check-alt' />;
+      case "Clothing":
+        return <i className='fas fa-tshirt' />;
+      case "Entertainment":
+        return <i className='fas fa-theater-masks' />;
+      case "Fitness":
+        return <i className='fas fa-running' />;
+      case "Food":
+        return <i className='fas fa-utensils' />;
+      case "Gift":
+        return <i className='fas fa-gift' />;
+      case "Health":
+        return <i className='fas fa-heartbeat' />;
+      case "Home":
+        return <i className='fas fa-home' />;
+      case "Internet":
+        return <i className='fas fa-wifi' />;
+      case "Telephone":
+        return <i className='fas fa-mobile-alt' />;
+      case "Transportation/Transit":
+        return <i className='fas fa-bus' />;
+      default:
+        return null;
+    }
+  };
+
   return (
     // <div className='card bg-light'>
     //   <h3 className='text-primary text-left'>{description}</h3>
@@ -28,7 +59,9 @@ const ExpenseItem = ({ expense }) => {
     <tr>
       <td>{formattedDate}</td>
       <td>{formattedAmount}</td>
-      <td>{category}</td>
+      <td>
+        {displayLogo(category)} {category}
+      </td>
       <td className='hide-sm'>{description}</td>
       <td style={{ textAlign: "center" }}>
         <button

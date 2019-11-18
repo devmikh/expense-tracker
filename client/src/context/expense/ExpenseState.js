@@ -15,7 +15,8 @@ import {
   SORT_EXPENSES,
   SET_ORDER,
   SET_SORT,
-  EXPENSE_ERROR
+  EXPENSE_ERROR,
+  UPDATE_CHART_DATA
 } from "../types";
 
 const ExpenseState = props => {
@@ -26,6 +27,8 @@ const ExpenseState = props => {
     order: "asc",
     sortBy: "Date",
     error: null
+    // chartData: [1, 2, 3],
+    // chartDataLabels: []
   };
 
   const [state, dispatch] = useReducer(expenseReducer, initialState);
@@ -46,6 +49,20 @@ const ExpenseState = props => {
       });
     }
   };
+
+  // Update Chart Data
+  // const updateChartData = () => {
+  //   try {
+  //     dispatch({
+  //       type: UPDATE_CHART_DATA
+  //     });
+  //   } catch (err) {
+  //     dispatch({
+  //       type: EXPENSE_ERROR,
+  //       payload: err.response.msg
+  //     });
+  //   }
+  // };
 
   // Add Expense
   const addExpense = async expense => {
@@ -158,6 +175,8 @@ const ExpenseState = props => {
         order: state.order,
         sortBy: state.sortBy,
         error: state.error,
+        chartData: state.chartData,
+        chartDataLabels: state.chartDataLabels,
         addExpense,
         deleteExpense,
         setCurrent,
@@ -170,6 +189,7 @@ const ExpenseState = props => {
         setSort,
         getExpenses,
         clearExpenses
+        //updateChartData
       }}
     >
       {props.children}

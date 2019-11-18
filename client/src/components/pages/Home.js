@@ -3,6 +3,7 @@ import Expenses from "../expenses/Expenses";
 import ExpenseForm from "../expenses/ExpenseForm";
 import ExpenseFilter from "../expenses/ExpenseFilter";
 import ExpenseSortBy from "../expenses/ExpenseSortBy";
+import ExpenseChart from "../expenses/ExpenseChart";
 import AuthContext from "../../context/auth/authContext";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
         <ExpenseForm />
       </div>
       <div>
+        {/* <ExpenseChart /> */}
         <ExpenseSortBy />
         <ExpenseFilter />
         <Expenses />
