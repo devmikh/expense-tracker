@@ -68,6 +68,7 @@ const Register = props => {
             name='password'
             value={password}
             onChange={onChange}
+            minLength='6'
           />
         </div>
         <div className='form-group'>
@@ -77,12 +78,13 @@ const Register = props => {
             name='password2'
             value={password2}
             onChange={onChange}
+            minLength='6'
           />
         </div>
         <input
           type='submit'
           value='Register'
-          class='btn btn-primary btn-block'
+          className='btn btn-primary btn-block'
         />
       </form>
     </div>

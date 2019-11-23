@@ -17,7 +17,7 @@ const Expenses = () => {
   useEffect(() => {
     (async function() {
       await getExpenses();
-      sortExpenses();
+      //sortExpenses();
     })();
     // eslint-disable-next-line
   }, []);

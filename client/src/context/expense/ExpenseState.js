@@ -39,6 +39,7 @@ const ExpenseState = props => {
         type: GET_EXPENSES,
         payload: res.data
       });
+      sortExpenses();
     } catch (err) {
       dispatch({
         type: EXPENSE_ERROR,
