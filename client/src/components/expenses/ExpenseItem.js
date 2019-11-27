@@ -19,7 +19,8 @@ const ExpenseItem = ({ expense }) => {
   const day = newDate.getUTCDate();
   const formattedDate = month + "/" + day + "/" + year;
 
-  const formattedAmount = "$" + amount.toFixed(2);
+  const formattedAmount =
+    "$" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
   const displayLogo = category => {
     switch (category) {

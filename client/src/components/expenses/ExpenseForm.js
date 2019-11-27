@@ -51,6 +51,11 @@ const ExpenseForm = () => {
   const onChange = e =>
     setExpense({ ...expense, [e.target.name]: e.target.value });
 
+  const onInput = e => {
+    if (e.target.value.length > 15)
+      e.target.value = e.target.value.slice(0, 15);
+  };
+
   const onSubmit = async e => {
     e.preventDefault();
     if (current === null) {
@@ -83,7 +88,10 @@ const ExpenseForm = () => {
         name='amount'
         placeholder='$1,000'
         value={amount}
+        step='0.01'
+        onInput={onInput}
         onChange={onChange}
+        maxLength='15'
         required
       />
       <h4>Category</h4>
